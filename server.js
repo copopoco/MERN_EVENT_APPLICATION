@@ -1,5 +1,10 @@
 import app from "./app.js";
+import dbConnection from "./dbConnection.js";
+const port = 3000;
 
-app.listen(process.env.PORT, () => {
-    console.log('Server listening at port $(process.env.PORT');
-});
+dbConnection()
+.then( () => {
+    app.listen(process.env.PORT || 3000, () => {
+        console.log(`Server listening at port ${process.env.PORT || 3000}`);
+    });
+})

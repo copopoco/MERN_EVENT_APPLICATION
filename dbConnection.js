@@ -1,18 +1,14 @@
 import mongoose  from "mongoose";
 
-export const dbConnection = ()=>{
+const dbConnection = async ()=>{
     mongoose
-    .connect( 
-                        //"mongodb+srv://tushar_sajwan:tushar_sajwan@cluster0.yk09smk.mongodb.net/?retryWrites=true",
-        process.env.MONGO_URI, { dbName: "MERN_STACK_EVENT_MESSAGE"}
-        { dbName: "MERN_STACK_EVENT_MESSAGE"}
-        )
+    .connect( String(process.env.MONGODB_URI) )
     .then(()=> {
         console.log("Connected to database!");
     })
     .catch((err) => {
         console.log("Some error occured while connecting to database:", err);
-    })
-
-    
+    })    
 };
+
+export default dbConnection
